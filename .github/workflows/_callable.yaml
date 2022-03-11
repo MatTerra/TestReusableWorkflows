@@ -15,9 +15,7 @@ jobs:
     steps:
       - name: Set env
         run: |
-          echo $VAR | sed "s/;/\n/" | while read var
-          do 
-            echo "$var" >> $GITHUB_ENV
-          done
-      - name: Environment Printer
-        uses: managedkaos/print-env@v1.0
+          echo "${{ inputs.EXTRA_VARS }}" | sed "s/;/\n/g" > .env
+          source .env
+          rm -rf .env
+          env
