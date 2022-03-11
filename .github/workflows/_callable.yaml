@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  workflow_call:
+    inputs:
+      EXTRA_VARS:
+        type: string
+        required: true
+        description: List of variables as KeyValue separated by ;
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set env
+        run: |
+          echo $VAR | sed "s/;/\n/" | while read var
+          do 
+            echo "$var" >> $GITHUB_ENV
+          done
+      - name: Environment Printer
+        uses: managedkaos/print-env@v1.0

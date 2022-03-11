@@ -1,0 +1,12 @@
+name: Test passing env to workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call:
+    uses: ./.github/workflows/_callable.yaml
+    with:
+      EXTRA_VARS: "TEST=123;CLOUD=true"
