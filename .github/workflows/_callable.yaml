@@ -13,9 +13,13 @@ jobs:
     name: CI
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Set env
         run: |
           echo "${{ inputs.EXTRA_VARS }}" | sed "s/;/\n/g" > .env
           source .env
           rm -rf .env
-          env
+          perl -p -i.bak -E 's:{\{\s*(\S+?)\s*\}}:$ENV{$1} // die "$1 not set":ge' MyTest
+          cat MyTest
