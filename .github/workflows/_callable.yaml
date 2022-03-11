@@ -19,6 +19,7 @@ jobs:
 
       - name: Set env
         run: |
+          touch .env
           if [ -n "${{ inputs.EXTRA_VARS }}" ]
           then
             echo "${{ inputs.EXTRA_VARS }}" | sed "s/;/\n/g" | while read line; 
