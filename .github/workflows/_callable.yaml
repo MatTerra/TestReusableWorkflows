@@ -19,10 +19,13 @@ jobs:
 
       - name: Set env
         run: |
-          echo "${{ inputs.EXTRA_VARS }}" | sed "s/;/\n/g" | while read line; 
-          do
-            echo "export $line" >> .env
-          done
+          if [ -n "${{ inputs.EXTRA_VARS }}" ]
+          then
+            echo "${{ inputs.EXTRA_VARS }}" | sed "s/;/\n/g" | while read line; 
+            do
+              echo "export $line" >> .env
+            done
+          fi
           source .env
           rm -rf .env
           perl -p -i.bak -E 's:{\{\s*(\S+?)\s*\}}:$ENV{$1} // die "$1 not set":ge' MyTest
