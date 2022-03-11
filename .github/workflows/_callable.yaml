@@ -5,8 +5,9 @@ on:
     inputs:
       EXTRA_VARS:
         type: string
-        required: true
+        required: false
         description: List of variables as KeyValue separated by ;
+        default: ""
 
 jobs:
   ci:
