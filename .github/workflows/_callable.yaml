@@ -31,8 +31,6 @@ jobs:
             source .env
             rm -rf .env
           fi
-          source .env
-          rm -rf .env
           cat MyTest > TestDir/MyTest
           perl -p -i.bak -E 's:{\{\s*(\S+?)\s*\}}:$ENV{$1} // die "$1 not set":ge' TestDir/MyTest
           cat TestDir/MyTest
