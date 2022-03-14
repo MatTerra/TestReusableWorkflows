@@ -8,3 +8,5 @@ on:
 jobs:
   call:
     uses: ./.github/workflows/_callable.yaml
+    with:
+      EXTRA_VARS: "TEST=09;CLOUD=true;STRING=test;"
