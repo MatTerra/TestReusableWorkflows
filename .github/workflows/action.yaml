@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+env:
+  WOW: ${{ env.STRING }}
+  TEST: '09'
+  STRING: 'test-${{ env.TEST }}'
+
 jobs:
   call:
     uses: ./.github/workflows/_callable.yaml
